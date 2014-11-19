@@ -11,7 +11,7 @@ Gem::Specification.new do |g|
   g.description   = %q{Automate generation of Zendesk tickets}
   g.summary       = "#{g.description}"
   g.homepage      = 'https://github.com/ondmagi/zendesk_automator'
-  g.license       = ''  # @todo Add a license here
+  g.license       = 'MIT'
 
   g.files         = `git ls-files`.split($/)
   g.executables   = g.files.grep(%r{^bin/}) { |f| File.basename(f) }
