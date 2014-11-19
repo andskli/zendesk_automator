@@ -1,0 +1,32 @@
+---
+zendesk:
+  url: https://<subdomain>.zendesk.com/api/v2
+  username: <username here>
+  token: <your access token here>
+
+# Cron style scheduling
+schedules:
+  daily_0800:
+    cron: 0 8 * * 1,2,3,4,5
+  weekends_0800:
+    cron: 0 8 * * 5,6
+  always:
+    cron: '* * * * *'
+
+tasks:
+  example_task:
+    schedule: daily_0800
+    email_subject: This is a test ticket
+    email_body: |
+      Test tickets are probably not
+      made up
+      of several
+      lines.
+    submitter_id: <id of the user that is submitting this ticket>
+    requester_id: <id of the user that is requesting this ticket>
+    ticket_type: <task/problem/incident etc>
+    ticket_priority: <normal/high etc>
+    tags:
+      - tag one
+      - tag two
+      - etc

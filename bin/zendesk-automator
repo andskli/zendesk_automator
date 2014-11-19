@@ -1,0 +1,49 @@
+#!/usr/bin/env ruby
+
+$LOAD_PATH << File.dirname(__FILE__) + '/../lib' if $0 == __FILE__
+
+require 'optparse'
+require 'zendesk_automator'
+
+options = {}
+
+optparser = OptionParser.new do |opts|
+
+  opts.banner = %Q{ZendeskAutomator #{ZendeskAutomator::VERSION} -- a convienient way of automating ticket
+creation in Zendesk.
+
+}
+
+  opts.on('-h', '--help', 'Display this screen') do
+    puts opts
+    exit
+  end
+
+  opts.on('-c', '--config CONFIGFILE', 'Mandatory path to config file') do |opt|
+    options[:config_path] = opt
+  end
+
+  opts.on('-t', '--test', 'Dry-run, does not do any actual ticket creation') do
+    options[:dry_run] = true
+  end
+
+end
+
+begin
+  optparser.parse!
+
+  mandatory_opts = [:config_path]
+  missing_opts = mandatory_opts.select{ |param| options[param].nil? }
+  unless missing_opts.empty?
+    puts "Missing options: #{missing_opts.join(', ')}"
+    puts optparser
+    exit 1
+  end
+rescue OptionParser::InvalidOption, OptionParser::MissingArgument
+  puts $!.to_s
+  puts optparser
+  exit 1
+end
+
+$logger.debug(options)
+ZendeskAutomator::Run.new(options)
