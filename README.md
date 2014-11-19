@@ -1,4 +1,4 @@
-# zendesk-automator
+# zendesk_automator
 
 Simple, scheduled creation (for starters at least) of tickets in ZenDesk.
 
@@ -19,3 +19,9 @@ creation in Zendesk.
     -c, --config CONFIGFILE          Mandatory path to config file
     -t, --test                       Dry-run, does not do any actual ticket creation
 ```
+
+## TODO
+
+- [ ] Tests
+- [ ] Daemonize
+- [ ] Better logging
