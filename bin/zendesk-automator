@@ -45,5 +45,5 @@ rescue OptionParser::InvalidOption, OptionParser::MissingArgument
   exit 1
 end
 
-$logger.debug(options)
+$logger.debug "Options passed to ZendeskAutomator::Run: #{options}"
 ZendeskAutomator::Run.new(options)

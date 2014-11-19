@@ -16,9 +16,9 @@ module ZendeskAutomator
       @config = YAML::load_file(config_path)
 
       schedules = config['schedules']
-      $logger.debug schedules
+      $logger.debug "Found schedules: #{schedules}"
       tasks = config['tasks']
-      $logger.debug tasks
+      $logger.debug "Found tasks: #{tasks}"
 
       @zendesk_client = ZendeskAPI::Client.new do |client_config|
         client_config.url = config['zendesk']['url']
