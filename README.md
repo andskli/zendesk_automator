@@ -20,6 +20,38 @@ creation in Zendesk.
     -t, --test                       Dry-run, does not do any actual ticket creation
 ```
 
+Example YAML config file (notice erb date config..):
+
+```
+---
+zendesk:
+  url: https://cookiefactorycompany.zendesk.com/api/v2
+  username: user@cookiefactorycompany.com
+  token: magic zendesk token
+
+schedules:
+  daily_0500:
+    cron: 0 5 * * 1,2,3,4,5
+
+tasks:
+  check_the_ovens:
+    schedule: daily_0500
+    subject: <%= Time::new.strftime("%Y-%m-%d") %> Check that ovens are clean
+    comment: |
+      Perform the daily oven checking.
+
+      In order for proper cookie baking, ovens needs to be clean, plz check.
+    submitter_id: 1337  # id of the submitting user in zendesk
+    requester_id: 1337  # id of the requesting user in zendesk
+    type: task  # Could be task/problem etc
+    priority: high
+    tags:
+      - oven
+      - cleaning
+```
+
+
+
 ## TODO
 
 - [ ] Tests
