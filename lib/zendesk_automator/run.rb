@@ -47,10 +47,11 @@ module ZendeskAutomator
       today = Time::new.strftime("%Y-%m-%d %A")
 
       params.delete('schedule')
+      
       begin
         unless @options[:dry_run]
           $logger.info "Trying to create ticket with params: #{params}"
-          @zendesk_client.tickets.create(params)
+          @zendesk_client.tickets.create(keys_to_sym(params))
         else
           $logger.info "Dry-run requested, would have created ticket with params: #{params}"
         end
@@ -60,6 +61,10 @@ module ZendeskAutomator
         return false
       end
 
+    end
+
+    def keys_to_sym(h)
+      Hash[h.map { |(k, v)| [k.to_sym, v] }]
     end
 
   end
