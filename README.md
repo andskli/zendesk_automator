@@ -11,7 +11,7 @@ zendesk-automator is a simple utility that reads a YAML config file, then schedu
 ## Usage
 
 ```
-$ zendesk-automator -h
+$ zendesk-automator -h
 ZendeskAutomator 0.0.1 -- a convienient way of automating ticket
 creation in Zendesk.
 
@@ -22,7 +22,7 @@ creation in Zendesk.
 
 Example YAML config file (notice erb date config..):
 
-```
+```yaml
 ---
 zendesk:
   url: https://cookiefactorycompany.zendesk.com/api/v2
@@ -38,8 +38,7 @@ tasks:
     schedule: daily_0500
     subject: <%= Time::new.strftime("%Y-%m-%d") %> Check that ovens are clean
     comment: |
-      Perform the daily oven checking.
-
+      Perform the daily oven checking
       In order for proper cookie baking, ovens needs to be clean, plz check.
     submitter_id: 1337  # id of the submitting user in zendesk
     requester_id: 1337  # id of the requesting user in zendesk
@@ -56,4 +55,5 @@ tasks:
 
 - [ ] Tests
 - [ ] Daemonize
-- [ ] Better logging
+- [ ] Better logging
+- [x] Templating
