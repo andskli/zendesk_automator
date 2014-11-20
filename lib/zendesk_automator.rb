@@ -4,6 +4,7 @@ require 'zendesk_api'
 require 'time'
 require 'logger'
 require 'rufus-scheduler'
+require 'erb'
 
 require 'zendesk_automator/run'
 require 'zendesk_automator/logger'

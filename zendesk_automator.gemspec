@@ -23,4 +23,5 @@ Gem::Specification.new do |g|
 
   g.add_runtime_dependency 'zendesk_api'
   g.add_runtime_dependency 'rufus-scheduler'
+  g.add_runtime_dependency 'erb'
 end

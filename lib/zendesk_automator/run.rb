@@ -17,8 +17,9 @@ module ZendeskAutomator
 
       schedules = config['schedules']
       $logger.debug "Found schedules: #{schedules}"
+
       tasks = config['tasks']
-      $logger.debug "Found tasks: #{tasks}"
+      $logger.debug "Found task: #{tasks}"
 
       @zendesk_client = ZendeskAPI::Client.new do |client_config|
         client_config.url = config['zendesk']['url']
@@ -34,6 +35,7 @@ module ZendeskAutomator
         cron_str = schedules[schedule_name]['cron']
 
         $logger.debug "Trying to schedule #{task} with cron schedule '#{cron_str}'"
+
         scheduler.cron "#{cron_str}" do
           create_ticket(params)
         end
@@ -44,14 +46,15 @@ module ZendeskAutomator
 
     # @param [Hash] Insert a hash containing ticket attributes
     def create_ticket(params)
-      today = Time::new.strftime("%Y-%m-%d %A")
+      
+      params = sanitize_task(params)
 
-      params.delete('schedule')
+      params.delete(:schedule)
       
       begin
         unless @options[:dry_run]
           $logger.info "Trying to create ticket with params: #{params}"
-          @zendesk_client.tickets.create(keys_to_sym(params))
+          @zendesk_client.tickets.create(params)
         else
           $logger.info "Dry-run requested, would have created ticket with params: #{params}"
         end
@@ -63,8 +66,28 @@ module ZendeskAutomator
 
     end
 
+    # @params [Hash] Hash going in
+    # @return [Hash] Hash coming out
     def keys_to_sym(h)
       Hash[h.map { |(k, v)| [k.to_sym, v] }]
+    end
+
+    def erb_to_string(val)
+      ERB.new(val).result
+    end
+
+    # @params [Hash] Incoming unsanitized hash
+    # @return [Hash] Contains ERBified and sanitized values
+    def sanitize_task task
+      task = keys_to_sym(task)
+      task.each do |key, value|
+        if value.is_a?(String)
+          task[key] = erb_to_string(value)
+        elsif value.is_a?(Array)
+          value.map! { |v| erb_to_string(v) if v.is_a?(String) }
+        end
+      end
+      task
     end
 
   end
