@@ -49,11 +49,14 @@ tasks:
       - cleaning
 ```
 
-
-
 ## TODO
 
 - [ ] Tests
 - [ ] Daemonize
 - [ ] Better logging
 - [x] Templating
+
+
+## Contribute
+
+zendesk_automator came out of the idea that automatically creating tickets in zendesk should be simple to configure and setup, according to the needs that I saw. Thus, the current implementation is quite specific to these needs. Improvements surely can be done and all contributions are welcome, even complete re-thinking/structuring of things.
