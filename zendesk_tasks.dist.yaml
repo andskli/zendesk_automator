@@ -16,16 +16,16 @@ schedules:
 tasks:
   example_task:
     schedule: daily_0800
-    email_subject: This is a test ticket
-    email_body: |
+    subject: This is a test ticket
+    body: |
       Test tickets are probably not
       made up
       of several
       lines.
     submitter_id: <id of the user that is submitting this ticket>
     requester_id: <id of the user that is requesting this ticket>
-    ticket_type: <task/problem/incident etc>
-    ticket_priority: <normal/high etc>
+    type: <task/problem/incident etc>
+    priority: <normal/high etc>
     tags:
       - tag one
       - tag two
