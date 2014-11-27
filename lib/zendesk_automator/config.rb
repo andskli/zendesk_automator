@@ -14,8 +14,8 @@ module ZendeskAutomator
       @zendesk_url = values['zendesk']['url']
       @zendesk_username = values['zendesk']['username']
       @zendesk_token = values['zendesk']['token']
-      @schedules = values['schedules']
-      @tasks = values['tasks']
+      @schedules = values.fetch('schedules')
+      @tasks = values.fetch('tasks')
     end
 
   end
