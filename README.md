@@ -49,12 +49,8 @@ tasks:
       - cleaning
 ```
 
-## TODO
-
-- [ ] Tests
-- [ ] Daemonize
-- [ ] Better logging
-- [x] Templating
+### Reload config on running instance
+Send HUP signal to process.
 
 
 ## Contribute
