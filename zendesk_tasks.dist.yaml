@@ -15,7 +15,7 @@ schedules:
 
 tasks:
   example_task:
-    schedule: daily_0800
+    schedule: always
     subject: This is a test ticket
     body: |
       Test tickets are probably not
