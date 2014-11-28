@@ -3,6 +3,14 @@ module ZendeskAutomator
     attr_reader :zendesk_url, :zendesk_username, :zendesk_token,
         :schedules, :tasks, :config_path
 
+    def dryrun=(dryrun)
+      @dryrun = dryrun
+    end
+
+    def dryrun
+      @dryrun ||= false
+    end
+
     def read(path)
       @config_path = path
       unless File.file?(@config_path)

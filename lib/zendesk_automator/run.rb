@@ -5,7 +5,7 @@ module ZendeskAutomator
       # Read config
       @config = Config.new
       @config.read(options[:config_path])
-      @dryrun = options[:dry_run]
+      @config.dryrun = options[:dry_run]
 
       #$logger.debug "DRY-RUN: #{options[:dry_run]}"
       #$logger.debug "Found schedules: #{config.schedules}"
@@ -18,7 +18,7 @@ module ZendeskAutomator
       schedule_tasks!(@config)
 
       trap 'HUP' do
-        t = Thread.new do
+        Thread.new do
           $logger.info "Reloading config!"
           @jobs.count.times do
             job = @jobs.shift
@@ -43,7 +43,7 @@ module ZendeskAutomator
 
         @scheduler.cron "#{cron_str}" do |job|
           t = Ticket.new
-          t.dryrun = true if @dryrun
+          t.dryrun = @config.dryrun
           t.create(ticket_params)
           @jobs << job
         end
