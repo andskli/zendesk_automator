@@ -6,12 +6,12 @@ module ZendeskAutomator
     def create(ticket_params)
       params = sanitize(ticket_params)
 
-      ticket_params.delete(:schedule)
+      params.delete(:schedule)
 
       begin
         unless @dryrun
           $logger.info "Trying to create ticket with params: #{params}"
-          $zendesk_client.tickets.create(ticket_params)
+          $zendesk_client.tickets.create(params)
         else
           $logger.info "Dry-run requested, would have created ticket with params: #{params}"
         end
