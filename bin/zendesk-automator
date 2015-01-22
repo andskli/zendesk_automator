@@ -9,7 +9,7 @@ options = {}
 
 optparser = OptionParser.new do |opts|
 
-  opts.banner = %Q{ZendeskAutomator #{ZendeskAutomator::VERSION} -- a convienient way of automating ticket
+  opts.banner = %Q{ZendeskAutomator -- a convienient way of automating ticket
 creation in Zendesk.
 
 }

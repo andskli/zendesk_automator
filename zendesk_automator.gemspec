@@ -1,11 +1,9 @@
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
-require './lib/zendesk_automator'
-
 Gem::Specification.new do |g|
   g.name          = 'zendesk_automator'
-  g.version       = ZendeskAutomator::VERSION
+  g.version       = '0.0.1'
   g.authors       = ['Andreas Lindh']
   g.email         = ['andreas@superblock.se']
   g.description   = %q{Automate generation of Zendesk tickets}
