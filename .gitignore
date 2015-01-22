@@ -22,6 +22,4 @@ doc/
 
 .vagrant
 
-Gemfile.lock
-
 zendesk_tasks.yaml
