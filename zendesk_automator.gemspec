@@ -3,7 +3,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
 Gem::Specification.new do |g|
   g.name          = 'zendesk_automator'
-  g.version       = '0.0.1'
+  g.version       = '0.1.0'
   g.authors       = ['Andreas Lindh']
   g.email         = ['andreas@superblock.se']
   g.description   = %q{Automate generation of Zendesk tickets}
