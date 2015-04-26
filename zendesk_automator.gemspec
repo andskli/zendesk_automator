@@ -8,7 +8,7 @@ Gem::Specification.new do |g|
   g.email         = ['andreas@superblock.se']
   g.description   = %q{Automate generation of Zendesk tickets}
   g.summary       = "#{g.description}"
-  g.homepage      = 'https://github.com/ondmagi/zendesk_automator'
+  g.homepage      = 'https://github.com/andskli/zendesk_automator'
   g.license       = 'MIT'
 
   g.files         = `git ls-files`.split($/)
